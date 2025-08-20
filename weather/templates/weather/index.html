@@ -1,0 +1,57 @@
+{% extends "weather/base.html" %}
+{% block content %}
+{% if warning %}<div class="alert alert-warning">{{ warning }}</div>{% endif %}
+
+<div class="row g-3 align-items-end">
+  <div class="col-auto">
+    <button id="btnRandom" class="btn btn-primary">REFRESH (5 случайни)</button>
+  </div>
+  <div class="col-auto">
+    <input id="cityInput" class="form-control" placeholder="London,GB">
+  </div>
+  <div class="col-auto">
+    <button id="btnCheck" class="btn btn-outline-primary">REFRESH град</button>
+  </div>
+  <div class="col-auto">
+    <button id="btnHistory" class="btn btn-secondary">История (10)</button>
+  </div>
+  <div class="col-auto">
+    <div id="spinner" class="spinner-border text-primary d-none" role="status"></div>
+  </div>
+</div>
+
+<hr class="my-4">
+
+<div class="card shadow-sm">
+  <div class="card-header bg-white"><strong>Резултати</strong></div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-sm align-middle" id="resultsTable">
+        <thead>
+          <tr>
+            <th>Град</th>
+            <th>Състояние</th>
+            <th class="text-center">Темп. (°C)</th>
+            <th class="text-center">Влажност (%)</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div id="statsBox" class="mt-3 d-none">
+      <div class="alert alert-info mb-0" id="statsText"></div>
+    </div>
+  </div>
+</div>
+
+<div id="historyBox" class="mt-4 d-none">
+  <h5>Последни 10 измервания: <span id="historyCity"></span></h5>
+  <div class="table-responsive">
+    <table class="table table-sm" id="historyTable">
+      <thead><tr><th>Време</th><th>Темп.</th><th>Влажност</th><th>Състояние</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <div id="historyStats" class="small text-muted"></div>
+</div>
+{% endblock %}
